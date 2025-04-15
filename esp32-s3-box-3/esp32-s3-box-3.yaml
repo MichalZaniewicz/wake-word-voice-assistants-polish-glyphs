@@ -757,7 +757,12 @@ display:
       - id: idle_page
         lambda: |-
           it.fill(id(idle_color));
-          it.image((it.get_width() / 2), (it.get_height() / 2), id(casita_idle), ImageAlign::CENTER);
+          uint32_t t = id(esptime).now().value() / 1000;
+          if (t % 2 == 0) {
+            it.image((it.get_width() / 2), (it.get_height() / 2), id(casita_idle), ImageAlign::CENTER);
+          } else {
+            it.image((it.get_width() / 2), (it.get_height() / 2), id(casita_listening), ImageAlign::CENTER);
+          }
           id(draw_timer_timeline).execute();
           id(draw_active_timer_widget).execute();
       - id: listening_page
@@ -769,21 +774,23 @@ display:
         lambda: |-
           it.fill(id(thinking_color));
           it.image((it.get_width() / 2), (it.get_height() / 2), id(casita_thinking), ImageAlign::CENTER);
-          #it.filled_rectangle(20 , 20 , 280 , 30 , Color::WHITE );
-          #it.rectangle(20 , 20 , 280 , 30 , Color::BLACK );
-          #it.printf(30, 25, id(font_request), Color::BLACK, "%s", id(text_request).state.c_str());
+          it.filled_rectangle(20 , 20 , 280 , 30 , Color::WHITE );
+          it.rectangle(20 , 20 , 280 , 30 , Color::BLACK );
+          it.printf(30, 25, id(font_request), Color::BLACK, "%s", id(text_request).state.c_str());
 
           id(draw_timer_timeline).execute();
       - id: replying_page
         lambda: |-
           it.fill(id(replying_color));
+          uint32_t t = id(esptime).now().value() / 1000;
           it.image((it.get_width() / 2), (it.get_height() / 2), id(casita_replying), ImageAlign::CENTER);
-          #it.filled_rectangle(20 , 20 , 280 , 30 , Color::WHITE );
-          #it.rectangle(20 , 20 , 280 , 30 , Color::BLACK );
-          #it.filled_rectangle(20 , 190 , 280 , 30 , Color::WHITE );
-          #it.rectangle(20 , 190 , 280 , 30 , Color::BLACK );
-          #it.printf(30, 25, id(font_request), Color::BLACK, "%s", id(text_request).state.c_str());
-          #it.printf(30, 195, id(font_response), Color::BLACK, "%s", id(text_response).state.c_str());
+          
+          it.filled_rectangle(20 , 20 , 280 , 30 , Color::WHITE );
+          it.rectangle(20 , 20 , 280 , 30 , Color::BLACK );
+          it.filled_rectangle(20 , 190 , 280 , 30 , Color::WHITE );
+          it.rectangle(20 , 190 , 280 , 30 , Color::BLACK );
+          it.printf(30, 25, id(font_request), Color::BLACK, "%s", id(text_request).state.c_str());
+          it.printf(30, 195, id(font_response), Color::BLACK, "%s", id(text_response).state.c_str());
           id(draw_timer_timeline).execute();
       - id: timer_finished_page
         lambda: |-
