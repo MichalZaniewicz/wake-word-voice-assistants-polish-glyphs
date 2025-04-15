@@ -757,12 +757,7 @@ display:
       - id: idle_page
         lambda: |-
           it.fill(id(idle_color));
-          uint32_t t = id(esptime).now().value() / 1000;
-          if (t % 2 == 0) {
-            it.image((it.get_width() / 2), (it.get_height() / 2), id(casita_idle), ImageAlign::CENTER);
-          } else {
-            it.image((it.get_width() / 2), (it.get_height() / 2), id(casita_listening), ImageAlign::CENTER);
-          }
+          it.image((it.get_width() / 2), (it.get_height() / 2), id(casita_idle), ImageAlign::CENTER);
           id(draw_timer_timeline).execute();
           id(draw_active_timer_widget).execute();
       - id: listening_page
