@@ -782,9 +782,7 @@ display:
       - id: replying_page
         lambda: |-
           it.fill(id(replying_color));
-          uint32_t t = id(esptime).now().value() / 1000;
           it.image((it.get_width() / 2), (it.get_height() / 2), id(casita_replying), ImageAlign::CENTER);
-          
           it.filled_rectangle(20 , 20 , 280 , 30 , Color::WHITE );
           it.rectangle(20 , 20 , 280 , 30 , Color::BLACK );
           it.filled_rectangle(20 , 190 , 280 , 30 , Color::WHITE );
