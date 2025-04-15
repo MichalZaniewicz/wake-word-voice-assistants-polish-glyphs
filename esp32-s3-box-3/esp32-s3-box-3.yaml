@@ -425,9 +425,6 @@ script:
       - lambda: |
           id(check_if_timers_active).execute();
           if (id(global_is_timer_active)){
-            id(s3_box_lcd).filled_rectangle(80 , 40 , 160 , 50 , Color::WHITE );
-            id(s3_box_lcd).rectangle(80 , 40 , 160 , 50 , Color::BLACK );
-
             id(fetch_first_active_timer).execute();
             int hours_left = floor(id(global_first_active_timer).seconds_left / 3600);
             int minutes_left = floor((id(global_first_active_timer).seconds_left - hours_left * 3600) / 60);
@@ -435,14 +432,14 @@ script:
             auto display_hours = (hours_left < 10 ? "0" : "") + std::to_string(hours_left);
             auto display_minute = (minutes_left < 10 ? "0" : "") + std::to_string(minutes_left);
             auto display_seconds = (seconds_left  < 10 ? "0" : "") + std::to_string(seconds_left) ;
-
+  
             std::string display_string = "";
             if (hours_left > 0) {
               display_string = display_hours + ":" + display_minute;
             } else {
               display_string = display_minute + ":" + display_seconds;
             }
-            id(s3_box_lcd).printf(120, 47, id(font_timer), Color::BLACK, "%s", display_string.c_str());
+            id(s3_box_lcd).printf(40, 47, id(font_timer), Color::WHITE, "%s", display_string.c_str());
           }
 
   - id: start_voice_assistant
