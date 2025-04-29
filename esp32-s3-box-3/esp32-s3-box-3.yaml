@@ -440,7 +440,7 @@ script:
             } else {
               display_string = display_minute + ":" + display_seconds;
             }
-            id(s3_box_lcd).printf(280, 47, id(font_timer), Color::WHITE, "%s", display_string.c_str());
+            id(s3_box_lcd).printf(230, 47, id(font_timer), Color::WHITE, "%s", display_string.c_str());
           }
 
   - id: start_voice_assistant
